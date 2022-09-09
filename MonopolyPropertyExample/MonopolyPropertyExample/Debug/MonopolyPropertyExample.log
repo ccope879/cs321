@@ -1,0 +1,3 @@
+﻿  MonopolyPropertyExample.cpp
+C:\Users\Caleb Cope\source\repos\MonopolyPropertyExample\MonopolyPropertyExample\MonopolyPropertyExample.cpp(13,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  MonopolyPropertyExample.vcxproj -> C:\Users\Caleb Cope\source\repos\MonopolyPropertyExample\Debug\MonopolyPropertyExample.exe
