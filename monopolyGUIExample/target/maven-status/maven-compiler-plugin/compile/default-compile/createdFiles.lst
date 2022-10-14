@@ -1,0 +1,4 @@
+module-info.class
+com\mycompany\monopolyguiexample\PrimaryController.class
+com\mycompany\monopolyguiexample\SecondaryController.class
+com\mycompany\monopolyguiexample\App.class

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.monopolyguiexample.BoardController">
+   <children>
+      <ImageView fx:id="backgroundImage" fitHeight="450.0" fitWidth="450.0" layoutX="75.0" layoutY="75.0" opacity="0.75" pickOnBounds="true" />
+      <Rectangle fx:id="space10" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space20" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space0" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="525.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space30" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="525.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space19" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space18" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space17" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space16" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space1913" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space15" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space14" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="325.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space13" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space12" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space11" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space31" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space32" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space33" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space34" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space35" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space36" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="325.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space37" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space38" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space39" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="50.0" layoutX="525.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="space9" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="75.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space8" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="125.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space6" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="225.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space7" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="175.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space5" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="275.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space4" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="325.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="375.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="425.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="475.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space21" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="75.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space22" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="125.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space24" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="225.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space23" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="175.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space25" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="275.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space26" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="325.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space27" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="375.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space28" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="425.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="space29" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="75.0" layoutX="475.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="brown1" arcHeight="5.0" arcWidth="5.0" fill="#784400" height="20.0" layoutX="475.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="brown2" arcHeight="5.0" arcWidth="5.0" fill="#784400" height="20.0" layoutX="375.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="black1" arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="275.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="black2" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="55.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="black3" arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="275.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="black4" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="525.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="lightBlue1" arcHeight="5.0" arcWidth="5.0" fill="#bbdaed" height="20.0" layoutX="225.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="lightBlue2" arcHeight="5.0" arcWidth="5.0" fill="#bbdaed" height="20.0" layoutX="125.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="lightBlue3" arcHeight="5.0" arcWidth="5.0" fill="#bbdaed" height="20.0" layoutX="75.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="magenta1" arcHeight="5.0" arcWidth="5.0" fill="#ff00cc" height="50.0" layoutX="55.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="magenta2" arcHeight="5.0" arcWidth="5.0" fill="#ff00cc" height="50.0" layoutX="55.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="magenta3" arcHeight="5.0" arcWidth="5.0" fill="#ff00cc" height="50.0" layoutX="55.0" layoutY="325.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="orange1" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="50.0" layoutX="55.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="orange2" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="50.0" layoutX="55.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="orange3" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="50.0" layoutX="55.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="red1" arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="75.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="red2" arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="175.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="red3" arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="225.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="yellow1" arcHeight="5.0" arcWidth="5.0" fill="#fff600" height="20.0" layoutX="325.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="yellow2" arcHeight="5.0" arcWidth="5.0" fill="#fff600" height="20.0" layoutX="375.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="yellow21" arcHeight="5.0" arcWidth="5.0" fill="#fff600" height="20.0" layoutX="475.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="green1" arcHeight="5.0" arcWidth="5.0" fill="#009a17" height="50.0" layoutX="525.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="green2" arcHeight="5.0" arcWidth="5.0" fill="#009a17" height="50.0" layoutX="525.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="green3" arcHeight="5.0" arcWidth="5.0" fill="#009a17" height="50.0" layoutX="525.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="darkBlue1" arcHeight="5.0" arcWidth="5.0" fill="#04207d" height="50.0" layoutX="525.0" layoutY="375.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="darkBlue2" arcHeight="5.0" arcWidth="5.0" fill="#04207d" height="50.0" layoutX="525.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+      <Rectangle fx:id="jail1" arcHeight="5.0" arcWidth="5.0" fill="#ff9500" height="55.0" layoutX="20.0" layoutY="525.0" stroke="BLACK" strokeType="INSIDE" width="55.0" />
+      <Rectangle fx:id="jail2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="27.0" layoutY="533.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+      <Rectangle fx:id="logoBG" arcHeight="5.0" arcWidth="5.0" fill="RED" height="70.0" layoutX="100.0" layoutY="265.0" rotate="-45.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Text fx:id="logo" fill="WHITE" layoutX="118.0" layoutY="320.0" rotate="-45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARGEROPOLY" textAlignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="communityChest" arcHeight="5.0" arcWidth="5.0" fill="#53afffc7" height="125.0" layoutX="155.0" layoutY="135.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Rectangle fx:id="chance" arcHeight="5.0" arcWidth="5.0" fill="#ff8900c7" height="125.0" layoutX="370.0" layoutY="350.0" rotate="45.0" stroke="BLACK" strokeType="INSIDE" width="75.0" />
+      <Circle fx:id="p1_token" fill="#ff1f74" layoutX="565.0" layoutY="565.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p2_token" fill="#2166ff" layoutX="585.0" layoutY="565.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p3_token" fill="#21ff7c" layoutX="565.0" layoutY="585.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p4_token" fill="#ffe321" layoutX="585.0" layoutY="585.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="roll_button" layoutX="5.0" layoutY="607.0" mnemonicParsing="false" onAction="#roll_dice" prefHeight="25.0" prefWidth="83.0" text="Roll" textAlignment="CENTER" />
+      <Label fx:id="die1_label" layoutX="189.0" layoutY="590.0" prefHeight="0.0" prefWidth="15.0" text="0">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="die2_label" layoutX="221.0" layoutY="590.0" prefWidth="42.0" text="0">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="move_button" disable="true" layoutX="97.0" layoutY="606.0" mnemonicParsing="false" onAction="#update_pos" prefHeight="25.0" prefWidth="83.0" text="Move" />
+      <RadioButton fx:id="p1_choice" layoutX="968.0" layoutY="555.0" mnemonicParsing="false" onAction="#sel_p1" selected="true" text="Player 1">
+         <toggleGroup>
+            <ToggleGroup fx:id="player_choice" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="p4_choice" layoutX="968.0" layoutY="615.0" mnemonicParsing="false" onAction="#sel_p4" text="Player 4" toggleGroup="$player_choice" />
+      <RadioButton fx:id="p3_choice" layoutX="968.0" layoutY="595.0" mnemonicParsing="false" onAction="#sel_p3" text="Player 3" toggleGroup="$player_choice" />
+      <RadioButton fx:id="p2_choice" layoutX="968.0" layoutY="575.0" mnemonicParsing="false" onAction="#sel_p2" text="Player 2" toggleGroup="$player_choice" />
+      <Circle fx:id="p1_token1" fill="#ff1f74" layoutX="950.0" layoutY="564.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p2_token1" fill="#2166ff" layoutX="950.0" layoutY="584.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p3_token1" fill="#21ff7c" layoutX="950.0" layoutY="604.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="p4_token1" fill="#ffe321" layoutX="950.0" layoutY="624.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="list_button" layoutX="459.0" layoutY="605.0" mnemonicParsing="false" onAction="#list_properties" text="List Properties" />
+      <Label layoutX="300.0" layoutY="620.0" text="Current Space: " />
+      <Label fx:id="currentSpace_label" layoutX="384.0" layoutY="620.0" text="Go" />
+      <Label layoutX="300.0" layoutY="604.0" text="Current Player: " />
+      <Label fx:id="currentPlayer_label" layoutX="384.0" layoutY="604.0" prefHeight="17.0" prefWidth="106.0" text="Player 1" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f741a" height="237.0" layoutX="606.0" layoutY="4.0" stroke="#ff1f74" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2166ff1a" height="237.0" layoutX="806.0" layoutY="4.0" stroke="#2166ff" strokeType="INSIDE" width="200.0" />
+      <Label fx:id="p1_nam" layoutX="610.0" layoutY="6.0" text="Player 1" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="610.0" layoutY="47.0" text="Position: " />
+      <Label layoutX="610.0" layoutY="62.0" text="Money:" />
+      <Label layoutX="610.0" layoutY="77.0" text="Properties:" />
+      <Label fx:id="p1_pos" layoutX="682.0" layoutY="47.0" text="Default" />
+      <Label fx:id="p1_mon" layoutX="682.0" layoutY="62.0" text="Default" />
+      <Label fx:id="p1_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="77.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p2_nam" layoutX="810.0" layoutY="6.0" text="Player 2" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="810.0" layoutY="47.0" text="Position: " />
+      <Label layoutX="810.0" layoutY="62.0" text="Money:" />
+      <Label layoutX="810.0" layoutY="77.0" text="Properties:" />
+      <Label fx:id="p2_pos" layoutX="882.0" layoutY="47.0" text="Default" />
+      <Label fx:id="p2_mon" layoutX="882.0" layoutY="62.0" text="Default" />
+      <Label fx:id="p2_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="77.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21ff731a" height="237.0" layoutX="606.0" layoutY="241.0" stroke="#21ff73" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffe3211a" height="237.0" layoutX="806.0" layoutY="241.0" stroke="#ffe321" strokeType="INSIDE" width="200.0" />
+      <Label fx:id="p3_nam" layoutX="610.0" layoutY="243.0" text="Player 3" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="610.0" layoutY="284.0" text="Position: " />
+      <Label layoutX="610.0" layoutY="299.0" text="Money:" />
+      <Label layoutX="610.0" layoutY="314.0" text="Properties:" />
+      <Label fx:id="p3_pos" layoutX="682.0" layoutY="284.0" text="Default" />
+      <Label fx:id="p3_mon" layoutX="682.0" layoutY="299.0" text="Default" />
+      <Label fx:id="p3_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="314.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p4_nam" layoutX="810.0" layoutY="243.0" text="Player 4" underline="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="810.0" layoutY="284.0" text="Position: " />
+      <Label layoutX="810.0" layoutY="299.0" text="Money:" />
+      <Label layoutX="810.0" layoutY="314.0" text="Properties:" />
+      <Label fx:id="p4_pos" layoutX="882.0" layoutY="284.0" text="Default" />
+      <Label fx:id="p4_mon" layoutX="882.0" layoutY="299.0" text="Default" />
+      <Label fx:id="p4_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="314.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label layoutX="643.0" layoutY="492.0" text="Buy Property?" />
+      <Button fx:id="propertyYes_button" disable="true" layoutX="633.0" layoutY="523.0" mnemonicParsing="false" text="Yes" />
+      <Button fx:id="propertyNo_button" disable="true" layoutX="690.0" layoutY="523.0" mnemonicParsing="false" text="No" />
+   </children>
+</AnchorPane>
