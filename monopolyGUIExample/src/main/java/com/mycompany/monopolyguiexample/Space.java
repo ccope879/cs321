@@ -8,16 +8,19 @@ package com.mycompany.monopolyguiexample;
  *
  * @author Caleb Cope
  */
-public class Space {
-    String name;
-    int position;
-
-    Space(String n, int p) {
-        this.name = n;
-        this.position = p;
+public class UtilityProperty extends Property {
+    UtilityProperty(String n, int p) {
+        super(n, p);
+        this.cost = 150;
     }
-
-    void handleEvent(Player player) {
-
+    
+    @Override
+    int calculateRent(Player owner, int diceRoll) {
+        int rent;
+        if (owner.utilityAmount == 1)
+            rent = diceRoll * 4;
+        else
+            rent = diceRoll * 10;
+        return rent;
     }
 }
