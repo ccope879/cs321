@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -30,28 +31,9 @@ public class App extends Application {
             // Failed to load fxml
         }
     }
-
-   /* public static Scene scene;
-    AnchorPane root = FXMLLoader.load(getClass().getResource("Board.fxml"));
-    //String resource = "Board.fxml";
-    //FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Board.fxml"));
-    //static AnchorPane root = loader.load();
-
-    public App() throws IOException {
-    }
-    */
+    
     @Override
     public void start(Stage stage) throws IOException {
-        /*Rectangle rect = new Rectangle();  // import the built rectangle class for Javafx app..
-                                                                         // Set height, Width and X and Y axis.
-        rect.setX(200);
-        rect.setY(200);
-        rect.setWidth(100);
-        rect.setHeight(100);
-        rect.setStroke(Color.BLACK);
-        rect.setFill(Color.GREEN);
-
-        root.getChildren().add(rect);*/
         
         AnchorPane root = FXMLLoader.load(getClass().getResource("Board.fxml"));
         
@@ -73,13 +55,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-    
-    /*public AnchorPane getRoot() {
-        return root;
-    }*/
-/*
-    @Override
-    public void start(Stage stage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
 }
