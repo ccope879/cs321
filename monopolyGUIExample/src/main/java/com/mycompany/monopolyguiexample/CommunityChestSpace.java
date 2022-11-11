@@ -4,6 +4,9 @@
  */
 package com.mycompany.monopolyguiexample;
 
+import java.util.ArrayList;
+import javafx.scene.control.Button;
+
 /**
  *
  * @author Caleb Cope
@@ -11,5 +14,11 @@ package com.mycompany.monopolyguiexample;
 public class CommunityChestSpace extends Space {
     CommunityChestSpace(int p) {
         super("Community Chest", p);
+    }
+    
+    @Override
+    void handleEvent(int diceRoll, ArrayList<Player> all_players, Player player, Button roll_button, Button move_button, Button yes, Button no) {
+        move_button.setDisable(true);
+        roll_button.setDisable(false);
     }
 }
