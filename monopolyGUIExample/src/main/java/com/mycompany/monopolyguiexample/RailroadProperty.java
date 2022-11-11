@@ -14,4 +14,24 @@ public class RailroadProperty extends Property {
         this.cost = 200;
         int base_rent = 25;
     }
+    
+    @Override
+    int calculateRent(Player owner, int diceRoll) {
+        int rent = 0;
+        switch (owner.railroadAmount) {
+            case 1:
+                rent = 25;
+                break;
+            case 2:
+                rent = 50;
+                break;
+            case 3: 
+                rent = 100;
+                break;
+            case 4:
+                rent = 200;
+                break;
+        }
+        return rent;
+    }
 }
