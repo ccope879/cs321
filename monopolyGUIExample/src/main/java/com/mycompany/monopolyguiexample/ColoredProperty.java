@@ -84,4 +84,72 @@ public class ColoredProperty extends Property {
         this.house4_rent = colored_house4_rents[i];
         this.hotel_rent = colored_hotel_rents[i];
     }
+    
+    @Override
+    int calculateRent(Player owner, int diceRoll) {
+        int rent = this.base_rent;
+        boolean completeSet = false;
+        
+        if (this.building_level == 0) {
+            switch (this.color) {
+                case "brown":
+                    if (owner.brownAmount == 2)
+                        completeSet = true;
+                    break;
+                case "lightBlue":
+                    if (owner.lightBlueAmount == 3)
+                        completeSet = true;
+                    break;
+                case "pink":
+                    if (owner.pinkAmount == 3)
+                        completeSet = true;
+                    break;
+                case "orange":
+                    if (owner.orangeAmount == 3)
+                        completeSet = true;
+                    break;
+                case "red":
+                    if (owner.redAmount == 3)
+                        completeSet = true;
+                    break;
+                case "yellow":
+                    if (owner.yellowAmount == 3)
+                        completeSet = true;
+                    break;
+                case "green":
+                    if (owner.greenAmount == 3)
+                        completeSet = true;
+                    break;
+                case "darkBlue":
+                    if (owner.darkBlueAmount == 2)
+                        completeSet = true;
+                    break;
+            }
+            
+            if (completeSet == true)
+                rent = this.base_rent * 2;
+        }
+        
+        else if (this.building_level == 1) {
+            rent = this.house1_rent;
+        }
+        
+        else if (this.building_level == 2) {
+            rent = this.house2_rent;
+        }
+        
+        else if (this.building_level == 3) {
+            rent = this.house3_rent;
+        }
+        
+        else if (this.building_level == 4) {
+            rent = this.house4_rent;
+        }
+        
+        else if (this.building_level == 5) {
+            rent = this.hotel_rent;
+        }
+        
+        return rent;
+    }
 }
