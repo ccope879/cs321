@@ -29,13 +29,26 @@ public class Player {
     boolean is_up = false;
     String name;
     ArrayList<Property> propertiesOwned = new ArrayList<Property>();
+    int id;
+    boolean isBankrupt = false;
+    int brownAmount = 0;
+    int lightBlueAmount = 0;
+    int pinkAmount = 0;
+    int orangeAmount = 0;
+    int redAmount = 0;
+    int yellowAmount = 0;
+    int greenAmount = 0;
+    int darkBlueAmount = 0;
+    int railroadAmount = 0;
+    int utilityAmount = 0;
 
     //@FXML
     Circle player_token = new Circle();
     
-    Player(String n, double x, double y, Paint color) throws IOException {
+    Player(String n, double x, double y, Paint color, int ID) throws IOException {
         playerMoney = 1500;
         this.name = n;
+        this.id = ID;
 
         player_token.setLayoutX(x);
         player_token.setLayoutY(y);
@@ -70,5 +83,31 @@ public class Player {
 
     void playerPosition(int diceRoll) {
         position += diceRoll;
+    }
+    
+    void payMoney(int amount) {
+        this.playerMoney -= amount;
+        /*if (this.playerMoney >= amount) {
+            this.playerMoney -= amount;
+        }
+        else {
+            this.playerMoney = 0;
+            switch (this.id) {
+                case 0:
+                    p1_token.setVisible(false);
+                    break;
+                case 1:
+                    p2_token.setVisible(false);
+                    break;
+                case 2:
+                    p3_token.setVisible(false);
+                    break;
+                case 3:
+                    p4_token.setVisible(false);
+                    break;
+                default:
+                    break;
+            }
+        }*/
     }
 }
