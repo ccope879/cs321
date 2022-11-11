@@ -136,7 +136,7 @@
       <Label layoutX="610.0" layoutY="77.0" text="Properties:" />
       <Label fx:id="p1_pos" layoutX="682.0" layoutY="47.0" text="Default" />
       <Label fx:id="p1_mon" layoutX="682.0" layoutY="62.0" text="Default" />
-      <Label fx:id="p1_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="77.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p1_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="77.0" prefHeight="155.0" prefWidth="122.0" text="Default" />
       <Label fx:id="p2_nam" layoutX="810.0" layoutY="6.0" text="Player 2" underline="true">
          <font>
             <Font size="17.0" />
@@ -147,7 +147,7 @@
       <Label layoutX="810.0" layoutY="77.0" text="Properties:" />
       <Label fx:id="p2_pos" layoutX="882.0" layoutY="47.0" text="Default" />
       <Label fx:id="p2_mon" layoutX="882.0" layoutY="62.0" text="Default" />
-      <Label fx:id="p2_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="77.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p2_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="77.0" prefHeight="155.0" prefWidth="122.0" text="Default" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#21ff731a" height="237.0" layoutX="606.0" layoutY="241.0" stroke="#21ff73" strokeType="INSIDE" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffe3211a" height="237.0" layoutX="806.0" layoutY="241.0" stroke="#ffe321" strokeType="INSIDE" width="200.0" />
       <Label fx:id="p3_nam" layoutX="610.0" layoutY="243.0" text="Player 3" underline="true">
@@ -160,7 +160,7 @@
       <Label layoutX="610.0" layoutY="314.0" text="Properties:" />
       <Label fx:id="p3_pos" layoutX="682.0" layoutY="284.0" text="Default" />
       <Label fx:id="p3_mon" layoutX="682.0" layoutY="299.0" text="Default" />
-      <Label fx:id="p3_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="314.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p3_props" alignment="TOP_CENTER" layoutX="682.0" layoutY="314.0" prefHeight="155.0" prefWidth="122.0" text="Default" />
       <Label fx:id="p4_nam" layoutX="810.0" layoutY="243.0" text="Player 4" underline="true">
          <font>
             <Font size="17.0" />
@@ -171,9 +171,10 @@
       <Label layoutX="810.0" layoutY="314.0" text="Properties:" />
       <Label fx:id="p4_pos" layoutX="882.0" layoutY="284.0" text="Default" />
       <Label fx:id="p4_mon" layoutX="882.0" layoutY="299.0" text="Default" />
-      <Label fx:id="p4_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="314.0" prefHeight="155.0" prefWidth="39.0" text="Default" />
+      <Label fx:id="p4_props" alignment="TOP_CENTER" layoutX="882.0" layoutY="314.0" prefHeight="155.0" prefWidth="122.0" text="Default" />
       <Label layoutX="643.0" layoutY="492.0" text="Buy Property?" />
-      <Button fx:id="propertyYes_button" disable="true" layoutX="633.0" layoutY="523.0" mnemonicParsing="false" text="Yes" />
+      <Button fx:id="propertyYes_button" disable="true" layoutX="633.0" layoutY="523.0" mnemonicParsing="false" onAction="#buyProperty" text="Yes" />
       <Button fx:id="propertyNo_button" disable="true" layoutX="690.0" layoutY="523.0" mnemonicParsing="false" text="No" />
+      <Button fx:id="endTurnButton" layoutX="654.0" layoutY="600.0" mnemonicParsing="false" onAction="#end_turn" text="End Turn" />
    </children>
 </AnchorPane>
