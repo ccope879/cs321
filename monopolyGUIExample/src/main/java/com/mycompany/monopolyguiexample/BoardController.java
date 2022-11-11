@@ -247,6 +247,8 @@ public class BoardController implements Initializable  {
     public Button propertyYes_button;
     @FXML
     public Button propertyNo_button;
+    @FXML
+    public Button endTurnButton;
     
     Rectangle rect = new Rectangle();  // import the built rectangle class for Javafx app..
                                        // Set height, Width and X and Y axis.
@@ -254,10 +256,10 @@ public class BoardController implements Initializable  {
     
     Bank bank = new Bank();
     Space[] all_spaces = createSpaces(bank.all_properties);
-    Player player1 = new Player("Player 1", 565, 565, Color.rgb(255, 31, 116));
-    Player player2 = new Player("Player 2", 585, 565, Color.rgb(255, 31, 116));
-    Player player3 = new Player("Player 3", 565, 585, Color.rgb(255, 31, 116));
-    Player player4 = new Player("Player 4", 585, 585, Color.rgb(255, 31, 116));
+    Player player1 = new Player("Player 1", 565, 565, Color.rgb(255, 31, 116), 0);
+    Player player2 = new Player("Player 2", 585, 565, Color.rgb(255, 31, 116), 1);
+    Player player3 = new Player("Player 3", 565, 585, Color.rgb(255, 31, 116), 2);
+    Player player4 = new Player("Player 4", 585, 585, Color.rgb(255, 31, 116), 3);
     //Player[] all_players = {player1, player2, player3, player4};
     ArrayList<Player> all_players = new ArrayList<Player>(Arrays.asList(player1, player2, player3, player4));
     int current_player = 0;
@@ -265,7 +267,7 @@ public class BoardController implements Initializable  {
     int doubles_counter = 0;
 
     public BoardController() throws IOException {
-        player1.is_up = true;
+        
     }
     
     void list_spaces() {
@@ -282,6 +284,9 @@ public class BoardController implements Initializable  {
         // TODO
         backgroundImage.setImage(new Image("uahbg.jpg"));
         //backgroundImage.setImage(new Image("th bg.png"));
+        endTurnButton.setDisable(true);
+        player1.is_up = true;
+        
         p1_nam.setText(player1.name);
         p2_nam.setText(player2.name);
         p3_nam.setText(player3.name);
@@ -298,7 +303,19 @@ public class BoardController implements Initializable  {
         p2_props.setText("");
         p3_props.setText("");
         p4_props.setText("");
+        p1_token.setVisible(true);
+        //p4_token.setFill(Color.rgb(255, 31, 116));
         
+        // Debug
+        /*
+        bank.all_properties.get(2).ownership = 0;
+        bank.all_properties.get(3).ownership = 0;
+        bank.all_properties.get(4).ownership = 0;
+        player1.propertiesOwned.add(bank.all_properties.get(2));
+        player1.propertiesOwned.add(bank.all_properties.get(3));
+        player1.propertiesOwned.add(bank.all_properties.get(4));
+        player1.lightBlueAmount = 3;
+        */
     }    
     
     int findCurrentPlayer() {
@@ -306,11 +323,41 @@ public class BoardController implements Initializable  {
             return 0;
         else if (player2.is_up)
             return 1;
-        else if (player2.is_up)
+        else if (player3.is_up)
             return 2;
-        else if (player2.is_up)
+        else if (player4.is_up)
             return 3;
-        else return 4;
+        else return 5;
+    }
+    
+    private void update_current_player() {
+        int die1 = Integer.parseInt(die1_label.getText());
+        int die2 = Integer.parseInt(die2_label.getText());
+        int diceroll = die1 + die2;
+        
+        if (die1 != die2) {
+            all_players.get(current_player).is_up = false;
+            current_player++;
+            if (current_player == all_players.size()) {
+                current_player = 0;
+            }
+            all_players.get(current_player).is_up = true;
+            doubles_counter = 0;
+            currentPlayer_label.setText(all_players.get(current_player).name);
+            switch (current_player) {
+                case 0: p1_choice.setSelected(true);
+                break;
+                case 1: p2_choice.setSelected(true);
+                break;
+                case 2: p3_choice.setSelected(true);
+                break;
+                case 3: p4_choice.setSelected(true);
+                break;
+            }
+        }
+        else {
+            doubles_counter++;
+        }
     }
     
     @FXML
@@ -338,10 +385,11 @@ public class BoardController implements Initializable  {
             diceroll = 0;
             all_players.get(current_player).position = 40;
             current_player++;
-            if (current_player == 4) {
+            if (current_player == all_players.size()) {
                 current_player = 0;
             }
             currentPlayer_label.setText(all_players.get(current_player).name);
+            currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
         }
         
         while (diceroll > 0) {
@@ -380,36 +428,23 @@ public class BoardController implements Initializable  {
         sequentialTransition.getChildren().addAll(movements);
         sequentialTransition.play();
         
-        all_spaces[all_players.get(current_player).position].handleEvent(all_players.get(current_player));
-                
-        if (die1 != die2) {
-            all_players.get(current_player).is_up = false;
-            current_player++;
-            if (current_player == 4) {
-                current_player = 0;
-            }
-            all_players.get(current_player).is_up = true;
-            doubles_counter = 0;
-            currentPlayer_label.setText(all_players.get(current_player).name);
-            switch (current_player) {
-                case 0: p1_choice.setSelected(true);
-                break;
-                case 1: p2_choice.setSelected(true);
-                break;
-                case 2: p3_choice.setSelected(true);
-                break;
-                case 3: p4_choice.setSelected(true);
-                break;
-            }
-        }
-        else {
-            doubles_counter++;
-        }
+        int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());;
+        all_spaces[all_players.get(current_player).position].handleEvent(diceAmount, all_players, all_players.get(current_player), roll_button, move_button, propertyYes_button, propertyNo_button);
+        move_button.setDisable(true);
+        roll_button.setDisable(true);
+        
         current_space = all_spaces[all_players.get(current_player).position];
         currentSpace_label.setText(current_space.name);
-        roll_button.setDisable(false);
-        move_button.setDisable(true);
         updatePlayerInfo();
+        endTurnButton.setDisable(false);
+    }
+    
+    @FXML
+    private void end_turn(ActionEvent event) {
+        update_current_player();
+        move_button.setDisable(true);
+        roll_button.setDisable(false);
+        endTurnButton.setDisable(true);
     }
     
     @FXML
@@ -591,17 +626,102 @@ public class BoardController implements Initializable  {
         //player 1
         p1_pos.setText(all_spaces[player1.position].name);
         p1_mon.setText(Integer.toString(player1.playerMoney));
+        p1_props.setText("");
+        for (int iter = 0; iter < player1.propertiesOwned.size(); iter++) {
+            p1_props.setText(p1_props.getText() + player1.propertiesOwned.get(iter).name + "\n");
+        }
+        if (player1.playerMoney < 0) {
+            p1_mon.setText("BANKRUPT");
+            p1_token.setVisible(false);
+            player1.isBankrupt = true;
+        }
         
         //player 2
         p2_pos.setText(all_spaces[player2.position].name);
         p2_mon.setText(Integer.toString(player2.playerMoney));
+        p2_props.setText("");
+        for (int iter = 0; iter < player2.propertiesOwned.size(); iter++) {
+            p2_props.setText(p2_props.getText()+ player2.propertiesOwned.get(iter).name + "\n");
+        }
+        if (player2.playerMoney < 0) {
+            p2_mon.setText("BANKRUPT");
+            p2_token.setVisible(false);
+            player2.isBankrupt = true;
+        }
         
         //player 3
         p3_pos.setText(all_spaces[player3.position].name);
         p3_mon.setText(Integer.toString(player3.playerMoney));
+        p3_props.setText("");
+        for (int iter = 0; iter < player3.propertiesOwned.size(); iter++) {
+            p3_props.setText(p3_props.getText()+ player3.propertiesOwned.get(iter).name + "\n");
+        }
+        if (player3.playerMoney < 0) {
+            p3_mon.setText("BANKRUPT");
+            p3_token.setVisible(false);
+            player3.isBankrupt = true;
+        }
         
         //player 4
         p4_pos.setText(all_spaces[player4.position].name);
         p4_mon.setText(Integer.toString(player4.playerMoney));
+        p4_props.setText("");
+        for (int iter = 0; iter < player4.propertiesOwned.size(); iter++) {
+            p4_props.setText(p4_props.getText()+ player4.propertiesOwned.get(iter).name + "\n");
+        }
+        if (player4.playerMoney < 0) {
+            p4_mon.setText("BANKRUPT");
+            p4_token.setVisible(false);
+            player4.isBankrupt = true;
+        }
+    }
+    
+    @FXML
+    private void buyProperty(ActionEvent event) {
+        for (int iter = 0; iter < bank.all_properties.size(); iter++) {
+            if (bank.all_properties.get(iter).position == all_players.get(current_player).position) {
+                all_players.get(current_player).payMoney(bank.all_properties.get(iter).cost);
+                bank.all_properties.get(iter).ownership = findCurrentPlayer();
+                all_players.get(current_player).propertiesOwned.add(bank.all_properties.get(iter));
+                
+                int p = bank.all_properties.get(iter).position;
+                if (p % 5 == 0) {
+                    all_players.get(current_player).railroadAmount++;
+                }
+                else if (p == 12 || p == 28) {
+                    all_players.get(current_player).utilityAmount++;
+                }
+                else if (p < 5) {
+                    all_players.get(current_player).brownAmount++;
+                }
+                else if (p < 10) {
+                    all_players.get(current_player).lightBlueAmount++;
+                }
+                else if (p < 15) {
+                    all_players.get(current_player).pinkAmount++;
+                }
+                else if (p < 20) {
+                    all_players.get(current_player).orangeAmount++;
+                }
+                else if (p < 25) {
+                    all_players.get(current_player).redAmount++;
+                }
+                else if (p < 30) {
+                    all_players.get(current_player).yellowAmount++;
+                }
+                else if (p < 35) {
+                    all_players.get(current_player).greenAmount++;
+                }
+                else if (p < 40) {
+                    all_players.get(current_player).darkBlueAmount++;
+                }
+                
+                break;
+            }
+        }
+        propertyYes_button.setDisable(true);
+        propertyNo_button.setDisable(true);
+        endTurnButton.setDisable(false);
+        updatePlayerInfo();
     }
 }
