@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -249,14 +250,15 @@ public class BoardController implements Initializable  {
     public Button propertyNo_button;
     @FXML
     public Button endTurnButton;
-    
+    @FXML
+    private TextField player1Name;
     Rectangle rect = new Rectangle();  // import the built rectangle class for Javafx app..
                                        // Set height, Width and X and Y axis.
-    
+   
     
     Bank bank = new Bank();
     Space[] all_spaces = createSpaces(bank.all_properties);
-    Player player1 = new Player("Player 1", 565, 565, Color.rgb(255, 31, 116), 0);
+    Player player1 = new Player(player1Name.getText(), 565, 565, Color.rgb(255, 31, 116), 0);
     Player player2 = new Player("Player 2", 585, 565, Color.rgb(255, 31, 116), 1);
     Player player3 = new Player("Player 3", 565, 585, Color.rgb(255, 31, 116), 2);
     Player player4 = new Player("Player 4", 585, 585, Color.rgb(255, 31, 116), 3);
