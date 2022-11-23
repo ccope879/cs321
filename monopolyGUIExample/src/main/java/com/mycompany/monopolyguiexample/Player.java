@@ -6,17 +6,10 @@ package com.mycompany.monopolyguiexample;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import static javafx.scene.shape.StrokeType.INSIDE;
-import javafx.stage.Stage;
 
 /**
  *
