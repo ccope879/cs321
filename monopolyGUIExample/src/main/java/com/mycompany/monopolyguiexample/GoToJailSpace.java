@@ -17,7 +17,10 @@ public class GoToJailSpace extends Space {
     }
 
     @Override
-    void handleEvent(int diceRoll, ArrayList<Player> all_players, Player player, Button roll_button, Button move_button, Button yes, Button no) {
+    void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
+            Button rollButton, Button moveButton, Button yes, Button no, 
+            Button endTurn, Button viewEvent) {
         player.position = 40;
+        endTurn.setDisable(false);
     }
 }
