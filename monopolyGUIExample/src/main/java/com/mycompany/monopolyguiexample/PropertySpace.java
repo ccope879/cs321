@@ -7,6 +7,7 @@ package com.mycompany.monopolyguiexample;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -21,27 +22,41 @@ public class PropertySpace extends Space {
     }
 
     @Override
-    void handleEvent(int diceRoll, ArrayList<Player> all_players, Player player, Button roll_button, Button move_button, Button yes, Button no) {
+    void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
+            Button rollButton, Button moveButton, Button yes, Button no, 
+            Button endTurn, Button viewEvent) {
         //Scanner s = new Scanner(System.in);
+        endTurn.setDisable(true);
         if (this.property.ownership == 4) {
-            roll_button.setDisable(true);
-            move_button.setDisable(true);
             yes.setDisable(false);
             no.setDisable(false);
         }
         else if (this.property.ownership != player.id) {
-            int rent = this.property.calculateRent(all_players.get(this.property.ownership), diceRoll);
+            int rent = this.property.calculateRent(allPlayers.get(this.property.ownership), diceRoll);
             
             // current player pays rent
             player.payMoney(rent);
 
             // owner gets rent
             if (player.playerMoney >= rent) {
-                all_players.get(this.property.ownership).playerMoney += rent;
+                allPlayers.get(this.property.ownership).playerMoney += rent;
             }
             else {
-                all_players.get(this.property.ownership).playerMoney += player.playerMoney;
+                allPlayers.get(this.property.ownership).playerMoney += player.playerMoney;
             }
         }
+        endTurn.setDisable(false);
+    }
+    
+    @Override
+    void spawnPopUp(Text popupDescription, int diceRoll, ArrayList<Player> allPlayers, 
+            Player currentPlayer) {
+        String message = " ";
+        if (this.property.ownership != currentPlayer.id && this.property.ownership != 4) {
+            int rent = this.property.calculateRent(allPlayers.get(this.property.ownership), diceRoll);
+            message = "You must pay " + String.valueOf(rent) + " to " + 
+                    allPlayers.get(this.property.ownership).name + " for landing on " + this.property.name + "!";
+        }
+        popupDescription.setText(message);
     }
 }
