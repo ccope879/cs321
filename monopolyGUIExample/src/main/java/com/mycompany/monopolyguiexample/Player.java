@@ -64,7 +64,6 @@ public class Player {
         stage.show();*/
         
         //player_token = BoardController.p1_token;
-        
     }
     
     void playerSayHello() {
