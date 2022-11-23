@@ -252,17 +252,60 @@ public class BoardController implements Initializable  {
     public Button endTurnButton;
     @FXML
     private TextField player1Name;
+    @FXML
+    private TextField player2Name;
+    @FXML
+    private TextField player3Name;
+    @FXML
+    private TextField player4Name;
+    
+    String player1Name1;
+    String player2Name2;
+    String player3Name3;
+    String player4Name4;
+    
+    String setNamePlayer1(String name) {
+       p1_nam.setText(name);
+       if(name.equals("")){
+            p1_nam.setText("Player1");
+        }
+       return player1Name1;
+    }
+    String setNamePlayer2(String name) {
+       p2_nam.setText(name);
+       if(name.equals("")){
+            p2_nam.setText("Player2");
+        }
+       return player2Name2;
+    }
+    String setNamePlayer3(String name) {
+       p3_nam.setText(name);
+       if(name.equals("")){
+            p3_nam.setText("Player3");
+        }
+       return player3Name3;
+    }
+    String setNamePlayer4(String name) {
+       p4_nam.setText(name);
+       if(name.equals("")){
+            p4_nam.setText("Player4");
+        }
+       return player4Name4;
+    }
+    
     Rectangle rect = new Rectangle();  // import the built rectangle class for Javafx app..
                                        // Set height, Width and X and Y axis.
-   
     
     Bank bank = new Bank();
     Space[] all_spaces = createSpaces(bank.all_properties);
-    Player player1 = new Player(player1Name.getText(), 565, 565, Color.rgb(255, 31, 116), 0);
-    Player player2 = new Player("Player 2", 585, 565, Color.rgb(255, 31, 116), 1);
-    Player player3 = new Player("Player 3", 565, 585, Color.rgb(255, 31, 116), 2);
-    Player player4 = new Player("Player 4", 585, 585, Color.rgb(255, 31, 116), 3);
+    Player player1 = new Player(player1Name1, 565, 565, Color.rgb(255, 31, 116), 0);
+    Player player2 = new Player(player2Name2, 585, 565, Color.rgb(255, 31, 116), 1);
+    Player player3 = new Player(player3Name3, 565, 585, Color.rgb(255, 31, 116), 2);
+    Player player4 = new Player(player4Name4, 585, 585, Color.rgb(255, 31, 116), 3);
     //Player[] all_players = {player1, player2, player3, player4};
+    //ArrayList<Player> all_players = new ArrayList<Player>();
+    
+    
     ArrayList<Player> all_players = new ArrayList<Player>(Arrays.asList(player1, player2, player3, player4));
     int current_player = 0;
     Space current_space = all_spaces[0];
@@ -318,6 +361,7 @@ public class BoardController implements Initializable  {
         player1.propertiesOwned.add(bank.all_properties.get(4));
         player1.lightBlueAmount = 3;
         */
+  
     }    
     
     int findCurrentPlayer() {
