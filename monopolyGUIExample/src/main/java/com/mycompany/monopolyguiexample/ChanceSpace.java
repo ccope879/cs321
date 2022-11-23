@@ -17,8 +17,10 @@ public class ChanceSpace extends Space {
     }
 
     @Override
-    void handleEvent(int diceRoll, ArrayList<Player> all_players, Player player, Button roll_button, Button move_button, Button yes, Button no) {
-        move_button.setDisable(true);
-        roll_button.setDisable(false);
+    void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
+            Button rollButton, Button moveButton, Button yes, Button no, 
+            Button endTurn, Button viewEvent) {
+        endTurn.setDisable(false);
     }
 }
+
