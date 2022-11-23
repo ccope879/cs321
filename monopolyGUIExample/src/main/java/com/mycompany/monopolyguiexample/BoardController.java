@@ -15,7 +15,6 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -25,9 +24,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 /**
@@ -193,13 +190,13 @@ public class BoardController implements Initializable  {
     @FXML
     public Circle p4_token;
     @FXML
-    private Button rollButton;
+    private Button roll_button;
     @FXML
     private Label die1_label;
     @FXML
     private Label die2_label;
     @FXML
-    private Button moveButton;
+    private Button move_button;
     @FXML
     private RadioButton p1_choice;
     @FXML
@@ -211,9 +208,9 @@ public class BoardController implements Initializable  {
     @FXML
     private Button list_button;
     @FXML
-    private Label currentSpaceLabel;
+    private Label currentSpace_label;
     @FXML
-    private Label currentPlayerLabel;
+    private Label currentPlayer_label;
     @FXML
     private Label p1_nam;
     @FXML
@@ -247,91 +244,35 @@ public class BoardController implements Initializable  {
     @FXML
     private Label p4_props;
     @FXML
-    public Button propertyYesButton;
+    public Button propertyYes_button;
     @FXML
-    public Button propertyNoButton;
+    public Button propertyNo_button;
     @FXML
     public Button endTurnButton;
-    @FXML
-    public Button eventButton;
-    @FXML
-    public Rectangle popupRect;
-    @FXML
-    public Text popupPlayerName;
-    @FXML
-    public Text popupDescription;
-    @FXML
-    public Line popupDivider;
-    @FXML
-    public Button popupOK;
-    
-     String player1Name1;
-    String player2Name2;
-    String player3Name3;
-    String player4Name4;
-    
-    String setNamePlayer1(String name) {
-       p1_nam.setText(name);
-       if(name.equals("")){
-            p1_nam.setText("Player1");
-        }
-       return player1Name1;
-    }
-    String setNamePlayer2(String name) {
-       p2_nam.setText(name);
-       if(name.equals("")){
-            p2_nam.setText("Player2");
-        }
-       return player2Name2;
-    }
-    String setNamePlayer3(String name) {
-       p3_nam.setText(name);
-       if(name.equals("")){
-            p3_nam.setText("Player3");
-        }
-       return player3Name3;
-    }
-    String setNamePlayer4(String name) {
-       p4_nam.setText(name);
-       if(name.equals("")){
-            p4_nam.setText("Player4");
-        }
-       return player4Name4;
-    }
     
     Rectangle rect = new Rectangle();  // import the built rectangle class for Javafx app..
                                        // Set height, Width and X and Y axis.
     
-    // Create bank to hold properties, houses, and hotels
+    
     Bank bank = new Bank();
-    
-    // Create an array of Spaces
-    Space[] allSpaces = createSpaces(bank.all_properties);
-    
-    //Create players
+    Space[] all_spaces = createSpaces(bank.all_properties);
     Player player1 = new Player("Player 1", 565, 565, Color.rgb(255, 31, 116), 0);
     Player player2 = new Player("Player 2", 585, 565, Color.rgb(255, 31, 116), 1);
     Player player3 = new Player("Player 3", 565, 585, Color.rgb(255, 31, 116), 2);
     Player player4 = new Player("Player 4", 585, 585, Color.rgb(255, 31, 116), 3);
-    ArrayList<Player> allPlayers = new ArrayList<Player>(Arrays.asList(player1, player2, player3, player4));
-    
-    //keep track of the current player. 0:player1, 1:player2, 2:player3, 3:player4
-    int currentPlayer = 0;
-    
-    //set the current space to Go
-    Space currentSpace = allSpaces[0];
-    
-    //keep track of doubles in a row
-    int doublesCounter = 0;
+    //Player[] all_players = {player1, player2, player3, player4};
+    ArrayList<Player> all_players = new ArrayList<>(Arrays.asList(player1, player2, player3, player4));
+    int current_player = 0;
+    Space current_space = all_spaces[0];
+    int doubles_counter = 0;
 
     public BoardController() throws IOException {
         
     }
     
-    //for debugging
     void list_spaces() {
         for (int i = 0; i < 40; i++) {
-            System.out.println(allSpaces[i].name);
+            System.out.println(all_spaces[i].name);
         }
     }    
     
@@ -340,23 +281,20 @@ public class BoardController implements Initializable  {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // set background image
+        // TODO
         backgroundImage.setImage(new Image("uahbg.jpg"));
-        
+        //backgroundImage.setImage(new Image("th bg.png"));
         endTurnButton.setDisable(true);
-        
-        // set player 1 as current player
         player1.is_up = true;
         
-        // update info with names, starting cash (1500), and empty inventory
         p1_nam.setText(player1.name);
         p2_nam.setText(player2.name);
         p3_nam.setText(player3.name);
         p4_nam.setText(player4.name);
-        p1_pos.setText(allSpaces[0].name);
-        p2_pos.setText(allSpaces[0].name);
-        p3_pos.setText(allSpaces[0].name);
-        p4_pos.setText(allSpaces[0].name);
+        p1_pos.setText(all_spaces[0].name);
+        p2_pos.setText(all_spaces[0].name);
+        p3_pos.setText(all_spaces[0].name);
+        p4_pos.setText(all_spaces[0].name);
         p1_mon.setText(Integer.toString(player1.playerMoney));
         p2_mon.setText(Integer.toString(player2.playerMoney));
         p3_mon.setText(Integer.toString(player3.playerMoney));
@@ -367,17 +305,6 @@ public class BoardController implements Initializable  {
         p4_props.setText("");
         p1_token.setVisible(true);
         //p4_token.setFill(Color.rgb(255, 31, 116));
-        
-        // make event popup window transparent
-        /*popupRect.setFill(Color.TRANSPARENT);
-        popupDivider.setStroke(Color.TRANSPARENT);
-        popupPlayerName.setFill(Color.TRANSPARENT);
-        popupDescription.setFill(Color.TRANSPARENT);*/
-        popupRect.setVisible(false);
-        popupDivider.setVisible(false);
-        popupPlayerName.setVisible(false);
-        popupDescription.setVisible(false);
-        popupOK.setVisible(false);
         
         // Debug
         /*
@@ -391,7 +318,6 @@ public class BoardController implements Initializable  {
         */
     }    
     
-    //quickly check which player is up
     int findCurrentPlayer() {
         if (player1.is_up)
             return 0;
@@ -404,33 +330,21 @@ public class BoardController implements Initializable  {
         else return 5;
     }
     
-    private void updateCurrentPlayer() {
-        // Read labels of dice to get the dice roll
+    private void update_current_player() {
         int die1 = Integer.parseInt(die1_label.getText());
         int die2 = Integer.parseInt(die2_label.getText());
-        int diceRoll = die1 + die2;
+        int diceroll = die1 + die2;
         
-        if (die1 != die2) {     //AKA not doubles
-            // go to the next player
-            allPlayers.get(currentPlayer).is_up = false;
-            currentPlayer++;
-            
-            // if last player is up, cycle the array list
-            if (currentPlayer == allPlayers.size()) {
-                currentPlayer = 0;
+        if (die1 != die2) {
+            all_players.get(current_player).is_up = false;
+            current_player++;
+            if (current_player == all_players.size()) {
+                current_player = 0;
             }
-            
-            // set next player as current player
-            allPlayers.get(currentPlayer).is_up = true;
-            
-            // reset doubles counter
-            doublesCounter = 0;
-            
-            // update the label to show the players who is up
-            currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-            
-            // update debug selection
-            switch (currentPlayer) {
+            all_players.get(current_player).is_up = true;
+            doubles_counter = 0;
+            currentPlayer_label.setText(all_players.get(current_player).name);
+            switch (current_player) {
                 case 0: p1_choice.setSelected(true);
                 break;
                 case 1: p2_choice.setSelected(true);
@@ -441,200 +355,157 @@ public class BoardController implements Initializable  {
                 break;
             }
         }
-        else {      // if doubles, increment it
-            doublesCounter++;
+        else {
+            doubles_counter++;
         }
     }
     
     @FXML
-    private void updatePos(ActionEvent event) throws InterruptedException {
-        // Add labels together for total dice roll
+    private void update_pos(ActionEvent event) throws InterruptedException {
         int die1 = Integer.parseInt(die1_label.getText());
         int die2 = Integer.parseInt(die2_label.getText());
-        int diceRoll = die1 + die2;
-        
-        // create a list to keep track of piece movement
+        int diceroll = die1 + die2;
         List<TranslateTransition> movements = new ArrayList();
-        
-        // if in jail, set position to Just Visiting
-        if (allPlayers.get(currentPlayer).position == 40) {
-            allPlayers.get(currentPlayer).position = 10;
+        if (all_players.get(current_player).position == 40) {
+            all_players.get(current_player).position = 10;
         }
         
-        // if third double in a row is reached, send to jail
-        if ((die1 == die2) && (doublesCounter == 2)) {
-            switch (currentPlayer) {
-                case 0: movements = goToJail(p1_token, movements);
+        if ((die1 == die2) && (doubles_counter == 2)) {
+            switch (current_player) {
+                case 0: movements = go_to_jail(p1_token, movements);
                 break;
-                case 1: movements = goToJail(p2_token, movements);
+                case 1: movements = go_to_jail(p2_token, movements);
                 break;
-                case 2: movements = goToJail(p3_token, movements);
+                case 2: movements = go_to_jail(p3_token, movements);
                 break;
-                case 3: movements = goToJail(p4_token, movements);
+                case 3: movements = go_to_jail(p4_token, movements);
                 break;
             }
-            
-            // reset doubles counter (doubles counter increments to 0 by the end)
-            doublesCounter = -1;
-            
-            // immediately change dice roll to 0
-            diceRoll = 0;
-            
-            // set player's position to 40 (jail)
-            allPlayers.get(currentPlayer).position = 40;
-            
-            // increment current player
-            currentPlayer++;
-            if (currentPlayer == allPlayers.size()) {
-                currentPlayer = 0;
+            doubles_counter = -1;
+            diceroll = 0;
+            all_players.get(current_player).position = 40;
+            current_player++;
+            if (current_player == all_players.size()) {
+                current_player = 0;
             }
-            currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-            currentSpaceLabel.setText(allSpaces[allPlayers.get(currentPlayer).position].name);
+            currentPlayer_label.setText(all_players.get(current_player).name);
+            currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
         }
         
-        while (diceRoll > 0) {
-            // increment position one by one
-            allPlayers.get(currentPlayer).position += 1;
-            if (allPlayers.get(currentPlayer).position == 40)   // if pass Go, reset to 0
-                allPlayers.get(currentPlayer).position -= 40;
-            
-            // decrement dice roll
-            diceRoll -= 1;
-            
-            // collect all animations depending on the player
-            switch (currentPlayer) {
-                case 0: movements = movePiece(p1_token, allPlayers.get(currentPlayer).position, movements);
+        while (diceroll > 0) {
+            all_players.get(current_player).position += 1;
+            if (all_players.get(current_player).position == 40)
+                all_players.get(current_player).position -= 40;
+            diceroll -= 1;
+            switch (current_player) {
+                case 0: movements = move_piece(p1_token, all_players.get(current_player).position, movements);
                 break;
-                case 1: movements = movePiece(p2_token, allPlayers.get(currentPlayer).position, movements);
+                case 1: movements = move_piece(p2_token, all_players.get(current_player).position, movements);
                 break;
-                case 2: movements = movePiece(p3_token, allPlayers.get(currentPlayer).position, movements);
+                case 2: movements = move_piece(p3_token, all_players.get(current_player).position, movements);
                 break;
-                case 3: movements = movePiece(p4_token, allPlayers.get(currentPlayer).position, movements);
+                case 3: movements = move_piece(p4_token, all_players.get(current_player).position, movements);
                 break;
             }
+            //movements = move_piece(all_players[current_player].player_token, all_players[current_player].position, movements);
+            //movements = go_to_jail(all_players[current_player].player_token, movements);
         }
-        
-        // 30 is Go To Jail
-        if (allPlayers.get(currentPlayer).position == 30) {
-            allPlayers.get(currentPlayer).position = 40;
-            switch (currentPlayer) {
-                case 0: movements = goToJail(p1_token, movements);
+        if (all_players.get(current_player).position == 30) {
+            all_players.get(current_player).position = 40;
+            switch (current_player) {
+                case 0: movements = go_to_jail(p1_token, movements);
                 break;
-                case 1: movements = goToJail(p2_token, movements);
+                case 1: movements = go_to_jail(p2_token, movements);
                 break;
-                case 2: movements = goToJail(p3_token, movements);
+                case 2: movements = go_to_jail(p3_token, movements);
                 break;
-                case 3: movements = goToJail(p4_token, movements);
+                case 3: movements = go_to_jail(p4_token, movements);
                 break;
             }
         }
 
-        // reset dice roll for handleEvent function
-        int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());
-
-        allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
-                allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
-        // execute animations
         SequentialTransition sequentialTransition = new SequentialTransition();
         sequentialTransition.getChildren().addAll(movements);
-        
-        // after movement animation has finished, let the space handle the event
-        /*sequentialTransition.setOnFinished(e -> allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
-                allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton));*/
         sequentialTransition.play();
         
-        // let the space handle the event
-        //allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, endTurnButton);
+        int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());;
+        all_spaces[all_players.get(current_player).position].handleEvent(diceAmount, all_players, all_players.get(current_player), roll_button, move_button, propertyYes_button, propertyNo_button);
+        move_button.setDisable(true);
+        roll_button.setDisable(true);
         
-        // disable move and roll buttons until event is resolved by the user
-        moveButton.setDisable(true);
-        rollButton.setDisable(true);
-        
-        // update current space and label
-        currentSpace = allSpaces[allPlayers.get(currentPlayer).position];
-        currentSpaceLabel.setText(currentSpace.name);
-        
-        // update player info for all players
+        current_space = all_spaces[all_players.get(current_player).position];
+        currentSpace_label.setText(current_space.name);
         updatePlayerInfo();
+        endTurnButton.setDisable(false);
     }
     
     @FXML
-    private void endTurn(ActionEvent event) {   // when end turn button is clicked, enable move button
-        updateCurrentPlayer();
-        moveButton.setDisable(true);
-        rollButton.setDisable(false);
+    private void end_turn(ActionEvent event) {
+        update_current_player();
+        move_button.setDisable(true);
+        roll_button.setDisable(false);
         endTurnButton.setDisable(true);
     }
     
     @FXML
-    private void rollDice(ActionEvent event) {
+    private void roll_dice(ActionEvent event) {
         Random rand = new Random();
-        
-        // roll 2 dice 1-6
         int rand_int1 = rand.nextInt(6) + 1;
         int rand_int2 = rand.nextInt(6) + 1;
-        
-        // update dice labels
         String s1 = String.valueOf(rand_int1);
         String s2 = String.valueOf(rand_int2);
         die1_label.setText(s1);
         die2_label.setText(s2);
-        
-        // enable move button
-        rollButton.setDisable(true);
-        moveButton.setDisable(false);
+        roll_button.setDisable(true);
+        move_button.setDisable(false);
     }
     
-    // for debugging
     @FXML
-    private void selP1(ActionEvent event) {
+    private void sel_p1(ActionEvent event) {
         player1.is_up = true;
         player2.is_up = false;
         player3.is_up = false;
         player4.is_up = false;
         
-        currentPlayer = 0;
-        currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-        currentSpaceLabel.setText(allSpaces[allPlayers.get(currentPlayer).position].name);
+        current_player = 0;
+        currentPlayer_label.setText(all_players.get(current_player).name);
+        currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
     }
     @FXML
-    private void selP2(ActionEvent event) {
+    private void sel_p2(ActionEvent event) {
         player1.is_up = false;
         player2.is_up = true;
         player3.is_up = false;
         player4.is_up = false;
         
-        currentPlayer = 1;
-        currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-        currentSpaceLabel.setText(allSpaces[allPlayers.get(currentPlayer).position].name);
+        current_player = 1;
+        currentPlayer_label.setText(all_players.get(current_player).name);
+        currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
     }
     @FXML
-    private void selP3(ActionEvent event) {
+    private void sel_p3(ActionEvent event) {
         player1.is_up = false;
         player2.is_up = false;
         player3.is_up = true;
         player4.is_up = false;
         
-        currentPlayer = 2;
-        currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-        currentSpaceLabel.setText(allSpaces[allPlayers.get(currentPlayer).position].name);
+        current_player = 2;
+        currentPlayer_label.setText(all_players.get(current_player).name);
+        currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
     }
     @FXML
-    private void selP4(ActionEvent event) {
+    private void sel_p4(ActionEvent event) {
         player1.is_up = false;
         player2.is_up = false;
         player3.is_up = false;
         player4.is_up = true;
         
-        currentPlayer = 3;
-        currentPlayerLabel.setText(allPlayers.get(currentPlayer).name);
-        currentSpaceLabel.setText(allSpaces[allPlayers.get(currentPlayer).position].name);
+        current_player = 3;
+        currentPlayer_label.setText(all_players.get(current_player).name);
+        currentSpace_label.setText(all_spaces[all_players.get(current_player).position].name);
     }
     
-    // go straight from position 30 to position 40
-    private List<TranslateTransition> goToJail(Circle token, 
+    private List<TranslateTransition> go_to_jail(Circle token, 
             List<TranslateTransition> movelist) {
         TranslateTransition t = new TranslateTransition();
         t.setNode(token);
@@ -644,32 +515,23 @@ public class BoardController implements Initializable  {
         return movelist;
     }
     
-    
-    private List<TranslateTransition> movePiece(Circle token, int playerPos, 
+    private List<TranslateTransition> move_piece(Circle token, int p_pos, 
             List<TranslateTransition> movelist) throws InterruptedException {
-        // specify the translation depending on the next position
         TranslateTransition translate = new TranslateTransition();
         translate.setNode(token);
             
-        // Go
-        if (playerPos == 0) { 
+        if (p_pos == 0) { 
             translate.setToX(565-565);
             translate.setToY(565-565);
-            allPlayers.get(currentPlayer).playerMoney += 200;
+            all_players.get(current_player).playerMoney += 200;
         }
-        
-        // 1st brown space
-        else if (playerPos == 1) {
+        else if (p_pos == 1) {
             translate.setToX(487-565);
         }
-        
-        // Community Chest through 3rd light blue space
-        else if ((playerPos >= 2) && (playerPos < 10)) {
+        else if ((p_pos >= 2) && (p_pos < 10)) {
             translate.setByX(-50);
         }
-        
-        // Just Visiting. Depends on which player is up
-        else if (playerPos == 10) {
+        else if (p_pos == 10) {
             if (player1.is_up) {
                 translate.setToX(10-565);
                 translate.setToY(546-565);
@@ -687,58 +549,40 @@ public class BoardController implements Initializable  {
                 translate.setToY(570-565);
             }
         }
-        
-        // 1st pink space
-        else if (playerPos == 11) {
+        else if (p_pos == 11) {
             translate.setToX(17-565);
             translate.setToY(490-565);
         }
-        
-        // 1st utility through 3rd orange space
-        else if ((playerPos >= 12) && (playerPos < 20)) {
+        else if ((p_pos >= 12) && (p_pos < 20)) {
             translate.setByY(-50);
         }
-        
-        // Free Parking
-        else if (playerPos == 20) {
+        else if (p_pos == 20) {
             translate.setToX(17-565);
             translate.setToY(38-565);
         }
-        
-        // 1st red space
-        else if (playerPos == 21) {
+        else if (p_pos == 21) {
             translate.setToX(87-565);
             translate.setToY(19-565);
         }
-        
-        // Chance through 3rd yellow space
-        else if ((playerPos >= 22) && (playerPos < 30)) {
+        else if ((p_pos >= 22) && (p_pos < 30)) {
             translate.setByX(50);
         }
-        
-        // Go To Jail
-        else if (playerPos == 30) {
+        else if (p_pos == 30) {
             translate.setToX(557-565);
             translate.setToY(38-565);
         }
-        
-        // 1st green space
-        else if (playerPos == 31) {
+        else if (p_pos == 31) {
             translate.setToY(90-565);
         }
-        
-        // 2nd green space through 2nd dark blue space
         else {
             translate.setByY(50);
         }
-        
         movelist.add(translate);
         return movelist;
     }
     
-    // for debugging
     @FXML
-    private void listProperties(ActionEvent event) {
+    private void list_properties(ActionEvent event) {
         int iter = 0;
         while (iter < 28) {
             bank.all_properties.get(iter).printInfo();
@@ -772,13 +616,15 @@ public class BoardController implements Initializable  {
         spaces[7] = new ChanceSpace(7);
         spaces[22] = new ChanceSpace(22);
         spaces[36] = new ChanceSpace(36);
-
+        
+        
+        
         return spaces;
     }
     
     void updatePlayerInfo() {
         //player 1
-        p1_pos.setText(allSpaces[player1.position].name);
+        p1_pos.setText(all_spaces[player1.position].name);
         p1_mon.setText(Integer.toString(player1.playerMoney));
         p1_props.setText("");
         for (int iter = 0; iter < player1.propertiesOwned.size(); iter++) {
@@ -791,7 +637,7 @@ public class BoardController implements Initializable  {
         }
         
         //player 2
-        p2_pos.setText(allSpaces[player2.position].name);
+        p2_pos.setText(all_spaces[player2.position].name);
         p2_mon.setText(Integer.toString(player2.playerMoney));
         p2_props.setText("");
         for (int iter = 0; iter < player2.propertiesOwned.size(); iter++) {
@@ -804,7 +650,7 @@ public class BoardController implements Initializable  {
         }
         
         //player 3
-        p3_pos.setText(allSpaces[player3.position].name);
+        p3_pos.setText(all_spaces[player3.position].name);
         p3_mon.setText(Integer.toString(player3.playerMoney));
         p3_props.setText("");
         for (int iter = 0; iter < player3.propertiesOwned.size(); iter++) {
@@ -817,7 +663,7 @@ public class BoardController implements Initializable  {
         }
         
         //player 4
-        p4_pos.setText(allSpaces[player4.position].name);
+        p4_pos.setText(all_spaces[player4.position].name);
         p4_mon.setText(Integer.toString(player4.playerMoney));
         p4_props.setText("");
         for (int iter = 0; iter < player4.propertiesOwned.size(); iter++) {
@@ -831,98 +677,50 @@ public class BoardController implements Initializable  {
     }
     
     @FXML
-    private void spawnPopUp(ActionEvent event) {
-        // retrieve dice roll for popup function
-        int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());
-        
-        // make the popup visible
-        popupRect.setVisible(true);
-        popupDivider.setVisible(true);
-        popupPlayerName.setVisible(true);
-        popupDescription.setVisible(true);
-        popupOK.setVisible(true);
-        
-        // toggle the player name
-        popupPlayerName.setText(allPlayers.get(currentPlayer).name);
-        
-        // toggle the description
-        allSpaces[allPlayers.get(currentPlayer).position].spawnPopUp(
-                popupDescription, diceAmount, allPlayers, allPlayers.get(currentPlayer));
-        
-        
-        allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
-                allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
-    }
-    
-    @FXML
-    private void dismissPopup(ActionEvent event) {
-        // reset dice roll for handleEvent function
-        int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());
-        
-        popupRect.setVisible(false);
-        popupDivider.setVisible(false);
-        popupPlayerName.setVisible(false);
-        popupDescription.setVisible(false);
-        popupOK.setVisible(false);
-        allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
-                allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
-    }
-    
-    @FXML
     private void buyProperty(ActionEvent event) {
-        // go through each property to check which one shares the same position as the player
         for (int iter = 0; iter < bank.all_properties.size(); iter++) {
-            if (bank.all_properties.get(iter).position == allPlayers.get(currentPlayer).position) {
-                
-                // pay for the property
-                allPlayers.get(currentPlayer).payMoney(bank.all_properties.get(iter).cost);
-                
-                // change ownership from bank to current player
+            if (bank.all_properties.get(iter).position == all_players.get(current_player).position) {
+                all_players.get(current_player).payMoney(bank.all_properties.get(iter).cost);
                 bank.all_properties.get(iter).ownership = findCurrentPlayer();
+                all_players.get(current_player).propertiesOwned.add(bank.all_properties.get(iter));
                 
-                // add the property to the player's inventory
-                allPlayers.get(currentPlayer).propertiesOwned.add(bank.all_properties.get(iter));
-                
-                // update the player's amount of the property's type
                 int p = bank.all_properties.get(iter).position;
                 if (p % 5 == 0) {
-                    allPlayers.get(currentPlayer).railroadAmount++;
+                    all_players.get(current_player).railroadAmount++;
                 }
                 else if (p == 12 || p == 28) {
-                    allPlayers.get(currentPlayer).utilityAmount++;
+                    all_players.get(current_player).utilityAmount++;
                 }
                 else if (p < 5) {
-                    allPlayers.get(currentPlayer).brownAmount++;
+                    all_players.get(current_player).brownAmount++;
                 }
                 else if (p < 10) {
-                    allPlayers.get(currentPlayer).lightBlueAmount++;
+                    all_players.get(current_player).lightBlueAmount++;
                 }
                 else if (p < 15) {
-                    allPlayers.get(currentPlayer).pinkAmount++;
+                    all_players.get(current_player).pinkAmount++;
                 }
                 else if (p < 20) {
-                    allPlayers.get(currentPlayer).orangeAmount++;
+                    all_players.get(current_player).orangeAmount++;
                 }
                 else if (p < 25) {
-                    allPlayers.get(currentPlayer).redAmount++;
+                    all_players.get(current_player).redAmount++;
                 }
                 else if (p < 30) {
-                    allPlayers.get(currentPlayer).yellowAmount++;
+                    all_players.get(current_player).yellowAmount++;
                 }
                 else if (p < 35) {
-                    allPlayers.get(currentPlayer).greenAmount++;
+                    all_players.get(current_player).greenAmount++;
                 }
                 else if (p < 40) {
-                    allPlayers.get(currentPlayer).darkBlueAmount++;
+                    all_players.get(current_player).darkBlueAmount++;
                 }
                 
                 break;
             }
         }
-        propertyYesButton.setDisable(true);
-        propertyNoButton.setDisable(true);
+        propertyYes_button.setDisable(true);
+        propertyNo_button.setDisable(true);
         endTurnButton.setDisable(false);
         updatePlayerInfo();
     }

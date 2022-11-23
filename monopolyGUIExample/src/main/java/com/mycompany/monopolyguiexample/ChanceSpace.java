@@ -22,4 +22,3 @@ public class ChanceSpace extends Space {
         roll_button.setDisable(false);
     }
 }
-
