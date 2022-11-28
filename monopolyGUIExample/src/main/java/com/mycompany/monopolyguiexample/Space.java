@@ -30,21 +30,13 @@ public class Space {
 
     void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
             Button rollButton, Button moveButton, Button yes, Button no, 
-            Button endTurn, Button viewEvent) {
+            Button endTurn, Button viewEvent, Text description, Space[] allspaces) {
         endTurn.setDisable(false);
         
         
     }
     
-    void spawnPopUp(Text popupDescription, int diceRoll, ArrayList<Player> allPlayers, 
-        Player currentPlayer) {
+    void spawnPopUp(String message, Text popupDescription, int diceRoll, ArrayList<Player> allPlayers, Player currentPlayer, Space[] allSpaces) {
         
     }
-    
-    /*void spawnPopUp() {
-        Stage dialog = new Stage();
-        dialog.initOwner(parentStage);
-        dialog.initModality(Modality.APPLICATION_MODAL); 
-        dialog.showAndWait();
-    }*/
 }
