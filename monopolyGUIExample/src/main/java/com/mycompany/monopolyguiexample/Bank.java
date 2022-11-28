@@ -24,18 +24,18 @@ public class Bank {
         // ========= Create list of all property names =========
         String[] all_prop_names = new String[] {
             // List names of colored properties in order
-            "Mediterranean Avenue", "Baltic Avenue",
-            "Oriental Avenue", "Vermont Avenue", "Connecticut Avenue",
-            "St. Charles Place", "States Avenue", "Virginia Avenue",
-            "St. James Place", "Tennessee Avenue", "New York Avenue",
-            "Kentucky Avenue", "Indiana Avenue", "Illinois Avenue",
-            "Atlantic Avenue", "Ventnor Avenue", "Marvin Gardens",
-            "Pacific Avenue", "North Carolina Avenue", "Pennsylvania Avenue",
-            "Park Place", "Boardwalk",
+            "Salmon Library", "Student Services Building",
+            "Frank Franz Hall", "North Campus Hall", "Central Campus Hall",
+            "Morton Hall", "Wilson Hall", "Roberts Hall",
+            "Charger Park", "University Fitness Center", "Spragins Hall",
+            "Nursing Building", "I2C", "Natural Sciences Building",
+            "Engineering Building", "Shelby Center", "Olin King Tech Building",
+            "Bevil Center", "Charger Village", "South Campus Housing",
+            "Conference Training Center", "Charger Union",
             // List names of railroads in order
-            "Reading Railroad", "Pennsylvania Railroad", "B. & O. Railroad", "Short Line",
+            "Parking Garage", "CTC Parking", "WIlson Hall Parking", "Engineering Parking",
             // List names of utilities in order
-            "Electric Company", "Water Works" };
+            "Charger Brew", "Dunkin Donuts" };
 
         int[] all_prop_positions = new int[] {
             // List positions of each corresponding property name
