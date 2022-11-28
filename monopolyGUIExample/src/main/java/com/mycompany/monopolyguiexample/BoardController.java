@@ -532,9 +532,10 @@ public class BoardController implements Initializable  {
         // reset dice roll for handleEvent function
         int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());
 
-        allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
-                allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
+        spawnPopup();
+        //allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
+        //        allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
+        //        endTurnButton, eventButton);
         // execute animations
         SequentialTransition sequentialTransition = new SequentialTransition();
         sequentialTransition.getChildren().addAll(movements);
@@ -830,8 +831,7 @@ public class BoardController implements Initializable  {
         }
     }
     
-    @FXML
-    private void spawnPopUp(ActionEvent event) {
+    private void spawnPopup() {
         // retrieve dice roll for popup function
         int diceAmount = Integer.parseInt(die1_label.getText()) + Integer.parseInt(die2_label.getText());
         
@@ -847,12 +847,17 @@ public class BoardController implements Initializable  {
         
         // toggle the description
         allSpaces[allPlayers.get(currentPlayer).position].spawnPopUp(
-                popupDescription, diceAmount, allPlayers, allPlayers.get(currentPlayer));
+                popupDescription, diceAmount, allPlayers, allPlayers.get(currentPlayer), allSpaces);
         
         
         allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
                 allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
                 endTurnButton, eventButton);
+    }
+    
+    @FXML
+    private void spawnPopUp(ActionEvent event) {
+        spawnPopup();
     }
     
     @FXML
