@@ -580,8 +580,10 @@ public class BoardController implements Initializable  {
         // update dice labels
         String s1 = String.valueOf(rand_int1);
         String s2 = String.valueOf(rand_int2);
-        die1_label.setText(s1);
-        die2_label.setText(s2);
+        die1_label.setText("3");
+        die2_label.setText("4");
+        //die1_label.setText(s1);
+        //die2_label.setText(s2);
         
         // enable move button
         rollButton.setDisable(true);
@@ -846,13 +848,13 @@ public class BoardController implements Initializable  {
         popupPlayerName.setText(allPlayers.get(currentPlayer).name);
         
         // toggle the description
-        allSpaces[allPlayers.get(currentPlayer).position].spawnPopUp(
+        allSpaces[allPlayers.get(currentPlayer).position].spawnPopUp("",
                 popupDescription, diceAmount, allPlayers, allPlayers.get(currentPlayer), allSpaces);
         
         
         allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
                 allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
+                endTurnButton, eventButton,popupDescription, allSpaces);
     }
     
     @FXML
@@ -872,7 +874,7 @@ public class BoardController implements Initializable  {
         popupOK.setVisible(false);
         allSpaces[allPlayers.get(currentPlayer).position].handleEvent(diceAmount, allPlayers, 
                 allPlayers.get(currentPlayer), rollButton, moveButton, propertyYesButton, propertyNoButton, 
-                endTurnButton, eventButton);
+                endTurnButton, eventButton, popupDescription, allSpaces);
     }
     
     @FXML
