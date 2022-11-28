@@ -24,7 +24,7 @@ public class PropertySpace extends Space {
     @Override
     void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
             Button rollButton, Button moveButton, Button yes, Button no, 
-            Button endTurn, Button viewEvent) {
+            Button endTurn, Button viewEvent, Text description, Space[] allspaces) {
         //Scanner s = new Scanner(System.in);
         endTurn.setDisable(true);
         if (this.property.ownership == 4) {
@@ -49,9 +49,8 @@ public class PropertySpace extends Space {
     }
     
     @Override
-    void spawnPopUp(Text popupDescription, int diceRoll, ArrayList<Player> allPlayers, 
-            Player currentPlayer) {
-        String message = " ";
+    void spawnPopUp(String message, Text popupDescription, int diceRoll, ArrayList<Player> allPlayers, Player currentPlayer, Space[] allSpaces) {
+        message = " ";
         if (this.property.ownership != currentPlayer.id && this.property.ownership != 4) {
             int rent = this.property.calculateRent(allPlayers.get(this.property.ownership), diceRoll);
             message = "You must pay " + String.valueOf(rent) + " to " + 
