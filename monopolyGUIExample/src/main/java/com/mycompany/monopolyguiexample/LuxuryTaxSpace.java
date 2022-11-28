@@ -6,6 +6,7 @@ package com.mycompany.monopolyguiexample;
 
 import java.util.ArrayList;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -19,7 +20,7 @@ public class LuxuryTaxSpace extends Space {
     @Override
     void handleEvent(int diceRoll, ArrayList<Player> allPlayers, Player player, 
             Button rollButton, Button moveButton, Button yes, Button no, 
-            Button endTurn, Button viewEvent) {
+            Button endTurn, Button viewEvent, Text description, Space[] allspaces) {
         player.payMoney(100);
         endTurn.setDisable(false);
     }
